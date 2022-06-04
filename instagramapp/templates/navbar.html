@@ -13,28 +13,39 @@
 {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-inverse" style="height:100px;">
-  <div class="container-fluid">
+<nav class="navbar navbar-inverse" style="height:100px; ">
+  <div class=" container-fluid">
     <div class="navbar-header" style="margin-top:20px;font-family: 'Pacifico', cursive;">
-      <a class="navbar-brand" style="color:black;font-size:25px; margin-left:250%;" href="{% url 'indexpage' %}">Instagram</a>
-    </div>
-          <!-- Adding a search form  -->
-          <div class="col-xm-3 col-sm-4 col-md-4 navbar-right" style="margin-top:20px;">
+      <div style="display:flex; flex-direction:row; position:absolute; top:50%; left:25%;">
+          <a class="navbar-brand" style="color:black;font-size:25px; margin-right:20px;" href="{% url 'indexpage' %}">Instagram</a>
+        <!-- Adding a search form  -->
+        <form class="navbar-form" role="search" action="" style:"margin-right:50px;">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="user">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
+        </form>
 
-            <form class="navbar-form" role="search" action="">
-    
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder=" " name="user">
-                <div class="input-group-btn">
-                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                </div>
-              </div>
-    
-            </form>
-        </div>
         <!-- search form end -->
+        <a href="" style="margin-right:20px;text-decoration:none;"><span class="iconify" data-icon="ci:home-alt-fill" data-width="30"></span></a>
+        <a href="" style="margin-right:20px;text-decoration:none;"><span class="iconify" data-icon="fe:messanger" data-width="30"></span></a>
+        <a href="" style="margin-right:20px;"><span class="iconify" data-icon="bi:plus-square" data-width="30"></span></a>
+        <a href="" style="margin-right:20px;"><span class="iconify" data-icon="ant-design:compass-filled" data-width="30"></span></a>
+        <a href="" style="margin-right:20px;"><span class="iconify" data-icon="icon-park-outline:like" data-width="30"></span></a>
+        <a href="" style="margin-right:20px;"><span class="iconify" data-icon="healthicons:ui-user-profile" data-width="30"></span></a>
+      </div>
+      
+    </div>    
    
   </div>
 </nav>
+<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 </body>
 </html>

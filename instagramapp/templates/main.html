@@ -1,11 +1,18 @@
 {% load bootstrap3 %}
-{% load static%}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {%if title%}
+
+    <title>{{title}}</title>
+  
+    {%endif%}
+    
     {% block styles %}
     {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -17,7 +24,9 @@
             <img class="image1" src={% static "instagram.png" %}>
             <img class="image2"  src={% static "instagram.png" %}>
         </div>
+        <div>
+          <button><a href="{%url 'indexpage'%}">Go to index</a></button>
+      </div>
     </div>
-
 </body>
 </html>

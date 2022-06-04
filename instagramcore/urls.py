@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.urls import include, path
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'',include('instagramapp.urls'))
+    path(r'',include('instagramapp.urls')),
+    path('accounts/', include('django_registration.backends.one_step.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
