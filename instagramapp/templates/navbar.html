@@ -1,16 +1,38 @@
+{% load bootstrap3 %}
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Pacifico&family=Poppins:wght@100&display=swap" rel="stylesheet">
+{% endblock %}
 </head>
 <body>
 <nav class="navbar navbar-inverse" style="height:100px;">
   <div class="container-fluid">
-    <div class="navbar-header" style="margin-top:20px;">
-      <a class="navbar-brand" style="color:white;" href="{% url 'indexpage' %}">Instagram</a>
+    <div class="navbar-header" style="margin-top:20px;font-family: 'Pacifico', cursive;">
+      <a class="navbar-brand" style="color:black;font-size:25px; margin-left:250%;" href="{% url 'indexpage' %}">Instagram</a>
     </div>
+          <!-- Adding a search form  -->
+          <div class="col-xm-3 col-sm-4 col-md-4 navbar-right" style="margin-top:20px;">
+
+            <form class="navbar-form" role="search" action="">
+    
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder=" " name="user">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+    
+            </form>
+        </div>
+        <!-- search form end -->
    
   </div>
 </nav>
