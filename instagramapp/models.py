@@ -1,5 +1,3 @@
-from tkinter import CASCADE
-from xmlrpc.client import DateTime
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
