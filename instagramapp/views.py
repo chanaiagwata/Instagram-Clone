@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Followers, Profile, Post, Comment, Follow
-from .forms import DetailsForm, Post, PostForm
+from .models import Followers, Profile, Post, Comment, Follow, User
+from .forms import DetailsForm, PostForm, authform
+from .email import send_welcome_email
 # Create your views here.
 def main(request):
     '''
@@ -18,18 +19,35 @@ def index(request):
     comments = Comment.objects.all()
     return render(request, 'index.html', {'posts':posts, 'comments':comments})
 
+@login_required(login_url='/accounts/login/')
 def createpost(request):
+    
     createpost = PostForm()
+    
     if request.method=='POST':
+        form = authform(request.POST)
+        if form.is_valid():
+            print('valid')
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+            user = User(name = name,email = email)
+            user.save()
+            send_welcome_email(name,email)
+            
+            
+        else:
+            form=authform()
+            
         createpost = PostForm(request.POST,request.Files)
         if createpost.is_valid():
             createpost.save()
             return redirect('index')
         else:
             return HttpResponse('Your form is incorrect')
-    else: render(request, 'createpost_form.html', {'createpost':createpost})
+    else: render(request, 'createpost_form.html', {'createpost':createpost, 'authform':form})
     
-    
+ 
+@login_required(login_url='/accounts/login/')   
 def update_post(request, post_id):
     post_id=int(post_id)
     try:
@@ -42,6 +60,7 @@ def update_post(request, post_id):
         return redirect('index')
     return render(request,'createpost_form.html', {'update':post_form})
 
+@login_required(login_url='/accounts/login/')
 def delete_post(request, post_id):
     post_id=int(post_id)
     try:
