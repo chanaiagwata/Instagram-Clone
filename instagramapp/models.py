@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
 from django.utils.timezone import now
 # Create your models here.
 class Profile(models.Model):
@@ -40,3 +39,5 @@ class Follow(models.Model):
 
 class Followers(models.Model):
     followers = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.followers
