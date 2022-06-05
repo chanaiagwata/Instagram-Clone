@@ -37,3 +37,6 @@ class Follow(models.Model):
     
     def __str__(self):
         return self.following
+
+class Followers(models.Model):
+    followers = models.ForeignKey(User, on_delete=models.CASCADE)

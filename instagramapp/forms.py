@@ -9,4 +9,4 @@ class PostForm(forms.ModelForm):
 class DetailsForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user',]
+        exclude = ['user']
