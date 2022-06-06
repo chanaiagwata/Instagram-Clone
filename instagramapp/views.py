@@ -77,7 +77,8 @@ def profile(request):
     posts = Post.objects.all()
     following = Follow.objects.all()
     followers  = Followers.objects.all()
-    followercount=len(followers) 
+    followercount=len(followers)
+    followingcount=len(following) 
     current_user = request.user 
     
     if request.method=='POST':
@@ -100,6 +101,6 @@ def profile(request):
         details_form = DetailsForm
         posts_form = PostForm
         
-    return render(request,'profile.html', {'details_form':details_form, 'posts_form':posts_form, 'posts':posts, 'following':following, 'followercount':followercount}) 
+    return render(request,'profile.html', {'details_form':details_form, 'posts_form':posts_form, 'posts':posts, 'following':following, 'followercount':followercount, 'followingcount':followingcount}) 
 
 

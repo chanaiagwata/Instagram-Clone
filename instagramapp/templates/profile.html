@@ -1,10 +1,39 @@
 {% extends 'base.html' %}
-
+{% load bootstrap3 %}
 {% block content %}
 {{block.super}}
 <div class='container'>
     <h1>Profile works</h1>
 
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-sm-2">
+            {% if user.profile.profile_pic.url %}
+            <img src="{{user.profile.profile_pic.url}}" alt="Image" class="img-fluid">
+            {% else %}
+            <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
 
+                {% bootstrap_form details_form layout='inline'%}
+                <input type="submit" class="btn-lg btn-outline-primary" value="Add Profile">
+
+            </form>
+            {% endif %}
+            <h3>User: {{user.username}}</h3>
+        </div>
+        <div class="col-sm-2 col-md-1">
+            <button type="button" class="btn-sm btn-primary">FOLLOW</button>
+        </div>
+        <div class="col-md-2 col-sm-1">
+            <h4>Followers</h4>
+            <p>{{followercount}}</p>
+        </div>
+        <div class="col-md-2 col-sm-1">
+            <h4>Following</h4>
+            <p>{{followingcount}}</p>
+        </div>
+
+    </div>
+</div>
 {% endblock %}

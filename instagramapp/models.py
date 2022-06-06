@@ -11,7 +11,7 @@ class Profile(models.Model):
         return self.user
     
 class Post(models.Model):
-    image = models.ImageField(upload_to = 'posts/', blank=False)
+    pic = models.ImageField(upload_to = 'posts/', blank=False)
     caption =models.TextField(max_length=500)
     posted_at = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
