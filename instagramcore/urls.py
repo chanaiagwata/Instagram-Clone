@@ -21,6 +21,6 @@ from django.urls import include, path
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'',include('instagramapp.urls')),
-    path('accounts/', include('django_registration.backends.one_step.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path(r'^accounts/', include('registration.backends.simple.urls'))
+
 ]

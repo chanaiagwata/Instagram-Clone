@@ -1,4 +1,5 @@
-{%extends "registration/basereg.html"%} {% load bootstrap3 %}
+{%extends "registration/basereg.html"%}
+{% load bootstrap3 %}
 {% block content %}
 <div class="container">
   <div class="row">
@@ -15,6 +16,8 @@
         </div>
         <div class="panel-body">
 
+        <!--We have a form inside the panel body-->
+        <!--This form sends a post request to /accounts/register/-->
           <form  action="/accounts/register/" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
@@ -35,5 +38,7 @@
     <div class="col-md-4"></div>
   </div>
 </div>
+
+{% endblock %}
 
 {% endblock %}
