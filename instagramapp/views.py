@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Followers, Profile, Post, Comment, Follow, User
+from .models import Followers, Profile, Post, Comment, Follow
+from django.contrib.auth.models import User
 from .forms import DetailsForm, PostForm, authform
+from django.db.models import F
 from .email import send_welcome_email
 # Create your views here.
 def main(request):
@@ -70,27 +72,34 @@ def delete_post(request, post_id):
     post_up.delete()
     return redirect('index')
 
-def showprofile(request):
+def profile(request):
     posts = Post.objects.all()
     following = Follow.objects.all()
     followers  = Followers.objects.all()
-    followercount=len(followers)  
+    followercount=len(followers) 
+    current_user = request.user 
     
     if request.method=='POST':
         details_form = DetailsForm(request.POST, request.Files)
         posts_form = PostForm(request.POST, request.Files)
         
         if details_form.is_valid():
-            details_form.save()
+            profile = details_form.save(commit=False)
+            profile.user = current_user
+            profile.save()
             
         if posts_form.is_valid():
+            post = posts_form.save(commit=False)
+            post.profile = current_user.profile
             posts_form.save()
             
-            return redirect('showprofile')
-        else:
-            return HttpResponse('Some of the details in your forms are incorrect')
+        return redirect('profile')
+        
     else:
-        return render(request,'showprofile.html', {'details_form':details_form, 'posts_form':posts_form, 'posts':posts, 'following':following, 'followercount':followercount}) 
+        details_form = DetailsForm
+        posts_form = PostForm
+        
+    return render(request,'profile.html', {'details_form':details_form, 'posts_form':posts_form, 'posts':posts, 'following':following, 'followercount':followercount}) 
 
 
 # @login_required(login_url='/accounts/login/')
