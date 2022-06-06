@@ -72,6 +72,7 @@ def delete_post(request, post_id):
     post_up.delete()
     return redirect('index')
 
+@login_required(login_url='/accounts/login/')
 def profile(request):
     posts = Post.objects.all()
     following = Follow.objects.all()
@@ -102,4 +103,3 @@ def profile(request):
     return render(request,'profile.html', {'details_form':details_form, 'posts_form':posts_form, 'posts':posts, 'following':following, 'followercount':followercount}) 
 
 
-# @login_required(login_url='/accounts/login/')
