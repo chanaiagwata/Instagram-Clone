@@ -40,7 +40,7 @@ def createpost(request):
         else:
             form=authform()
             
-        createpost = PostForm(request.POST,request.Files)
+        createpost = PostForm(request.POST,request.F)
         if createpost.is_valid():
             createpost.save()
             return redirect('index')
@@ -82,8 +82,8 @@ def profile(request):
     current_user = request.user 
     
     if request.method=='POST':
-        details_form = DetailsForm(request.POST, request.Files)
-        posts_form = PostForm(request.POST, request.Files)
+        details_form = DetailsForm(request.POST, request.FILES)
+        posts_form = PostForm(request.POST, request.FILES)
         
         if details_form.is_valid():
             profile = details_form.save(commit=False)
