@@ -1,3 +1,4 @@
+from pathlib import Path
 """
 Django settings for instagramcore project.
 
@@ -10,7 +11,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
-from pathlib import Path
 import django_heroku
 import dj_database_url
 from decouple import config,Csv
@@ -35,9 +35,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zvjrjukzfht*v#w8i(pw8(15!hcosv)%ia9q!0w=1a3!-g)w+j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -92,7 +93,7 @@ WSGI_APPLICATION = 'instagramcore.wsgi.application'
 
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 # development
 if config('MODE')=="dev":
    DATABASES = {
