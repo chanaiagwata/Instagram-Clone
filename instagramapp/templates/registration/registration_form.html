@@ -16,8 +16,6 @@
         </div>
         <div class="panel-body">
 
-        <!--We have a form inside the panel body-->
-        <!--This form sends a post request to /accounts/register/-->
           <form  action="/accounts/register/" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}

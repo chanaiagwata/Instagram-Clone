@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Followers, Profile, Post, Comment, Follow
 from django.contrib.auth.models import User
 from .forms import DetailsForm, PostForm, authform
-from django.db.models import F
+# from django.db.models import F
 from .email import send_welcome_email
 # Create your views here.
 def main(request):
@@ -17,36 +17,27 @@ def index(request):
     '''
     Function that renders the index page(timeline)
     '''
+    form = PostForm()
     posts = Post.objects.all()
     comments = Comment.objects.all()
-    return render(request, 'index.html', {'posts':posts, 'comments':comments})
+    return render(request, 'index.html', {'form':form, 'posts':posts, 'comments':comments})
 
 @login_required(login_url='/accounts/login/')
 def createpost(request):
-    
-    createpost = PostForm()
-    
+    posts = Post.objects.all()
+    current_user = request.user
     if request.method=='POST':
-        form = authform(request.POST)
+        form=PostForm(request.POST, request.FILES)
         if form.is_valid():
-            print('valid')
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['email']
-            user = User(name = name,email = email)
-            user.save()
-            send_welcome_email(name,email)
+            post=form.save(commit=False)
+            post.createpost = current_user.createpost
+            post.save()
             
-            
-        else:
-            form=authform()
-            
-        createpost = PostForm(request.POST,request.F)
-        if createpost.is_valid():
-            createpost.save()
-            return redirect('index')
-        else:
-            return HttpResponse('Your form is incorrect')
-    else: render(request, 'createpost_form.html', {'createpost':createpost, 'authform':form})
+        return redirect('index')
+    else:
+        form = PostForm
+    return render(request, 'createpost_form.html', {'form':form, 'posts':posts})
+    
     
  
 @login_required(login_url='/accounts/login/')   
@@ -60,7 +51,7 @@ def update_post(request, post_id):
     if post_form.is_valid():
         post_form.save()
         return redirect('index')
-    return render(request,'createpost_form.html', {'update':post_form})
+    return render(request,'createpost_form.html', {'post_form':post_form})
 
 @login_required(login_url='/accounts/login/')
 def delete_post(request, post_id):

@@ -15,10 +15,10 @@ class Post(models.Model):
     caption =models.TextField(max_length=500)
     posted_at = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
-    likes = models.IntegerField()
+    likes = models.IntegerField(blank=True)
 
     def __str__(self):
-        return self.profile
+        return {self.profile.user}
     
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
