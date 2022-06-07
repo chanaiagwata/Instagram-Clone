@@ -5,7 +5,7 @@ from .models import Followers, Profile, Post, Comment, Follow
 from django.contrib.auth.models import User
 from .forms import DetailsForm, PostForm, authform
 # from django.db.models import F
-from .email import send_welcome_email
+# from .email import send_welcome_email
 # Create your views here.
 def main(request):
     '''
@@ -40,7 +40,7 @@ def createpost(request):
     
     
  
-@login_required(login_url='/accounts/login/')   
+  
 def update_post(request, post_id):
     post_id=int(post_id)
     try:
@@ -53,7 +53,7 @@ def update_post(request, post_id):
         return redirect('index')
     return render(request,'createpost_form.html', {'post_form':post_form})
 
-@login_required(login_url='/accounts/login/')
+
 def delete_post(request, post_id):
     post_id=int(post_id)
     try:
@@ -63,7 +63,7 @@ def delete_post(request, post_id):
     post_up.delete()
     return redirect('index')
 
-@login_required(login_url='/accounts/login/')
+
 def profile(request):
     posts = Post.objects.all()
     following = Follow.objects.all()

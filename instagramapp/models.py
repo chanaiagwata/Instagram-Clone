@@ -5,7 +5,7 @@ from django.utils.timezone import now
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to = 'images/', blank=True)
-    bio = models.TextField()
+    bio = models.TextField(max_length=240, null=True)
     
     def __str__(self):
         return self.user
@@ -17,7 +17,7 @@ class Profile(models.Model):
     
 class Post(models.Model):
     pic = models.ImageField(upload_to = 'posts/', blank=False)
-    caption =models.TextField(max_length=500)
+    caption =models.TextField(max_length=240)
     posted_at = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     likes = models.IntegerField(blank=True)
