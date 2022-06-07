@@ -15,7 +15,7 @@ import django_heroku
 import dj_database_url
 from decouple import config,Csv
 
-MODE=config("MODE", default= "dev")
+
 
 # Email configurations remember to install python-decouple
 EMAIL_USE_TLS=config('EMAIL_USE_TLS')
@@ -90,19 +90,25 @@ WSGI_APPLICATION = 'instagramcore.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+# development
 if config('MODE')=="dev":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': config('DB_NAME'),
-            'USER':config('DB_USER'),
-            'PASSWORD':config('DB_PASSWORD'),
-            'HOST': config('DB_HOST'),
-            'PORT': '',
-        }
-    }
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD'),
+           'HOST': config('DB_HOST'),
+           'PORT': '',
+       }
+
+   }
+# production
 else:
-    DATABASES = {
+   DATABASES = {
        'default': dj_database_url.config(
            default=config('DATABASE_URL')
        )
