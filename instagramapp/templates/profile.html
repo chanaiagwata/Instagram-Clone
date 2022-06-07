@@ -38,26 +38,25 @@
 
     </div>
 </div>
-<div class="nav navbar-nav" role="navigation">
-    <div class="container-fluid">
-         <div class="nav navbar-nav navbar-right">
-            <ul>
+    <div class="container">
+         <div style="width:100%;background:grey; height:70px;">
+            <ul style="list-style: none; border: 2px solid black; width:100%; display:flex; flex-direction:row;">
                 <li class="nav-item">
-                    <a class="nav-link" href="{%url 'indexpage' %}">
-                        <i class="fas fa-th"></i> Posts</a>
+                    <a href="{%url 'indexpage' %}">
+                        Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{%url 'mainpage' %}">
+                    <a  href="{%url 'mainpage' %}">
                         Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{%url 'update' %}">
+                    <a href="{%url 'update' %}">
                     Update Profile</a>
                 </li>
             </ul>
         </div>
     </div>
-</div>
+
 
 
 {% endblock %}
