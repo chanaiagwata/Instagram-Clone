@@ -12,4 +12,5 @@ urlpatterns = [
     # path('profile/', views.profile, name='profile')
     path('accounts/profile/',views.profile,name = 'profile'),
     path(r'update_profile', views.update_profile, name='update'),
+    path(r'search/', views.search_results, name='search_results')
 ]

@@ -109,4 +109,17 @@ def update_profile(request):
         form = DetailsForm()
     return render(request, 'update_profile.html', {"form":form})
 
+def search_results(request):
+
+    if 'profile' in request.GET and request.GET["profile"]:
+        search_term = request.GET.get("profile")
+        searched_profiles = Profile.search_by_title(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"profiles": searched_profiles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
 

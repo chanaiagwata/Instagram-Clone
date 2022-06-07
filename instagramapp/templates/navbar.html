@@ -19,7 +19,7 @@
       <div style="display:flex; flex-direction:row; position:absolute; top:50%; left:25%;">
           <a class="navbar-brand" style="color:black; font-size:25px; margin-right:20px;" href="{% url 'indexpage' %}">Instagram</a>
         <!-- Adding a search form  -->
-        <form class="navbar-form" role="search" action="" style:"margin-right:50px;">
+        <form class="navbar-form" role="search" action="{% url 'search_results' %}" style:"margin-right:50px;">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" name="user">
             <div class="input-group-btn">

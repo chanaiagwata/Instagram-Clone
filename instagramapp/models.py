@@ -10,6 +10,11 @@ class Profile(models.Model):
     def __str__(self):
         return self.user
     
+    def search_by_username(cls,search_term):
+        profile = cls.objects.filter(username__icontains=search_term)
+        return profile
+    
+    
 class Post(models.Model):
     pic = models.ImageField(upload_to = 'posts/', blank=False)
     caption =models.TextField(max_length=500)
@@ -41,3 +46,4 @@ class Followers(models.Model):
     followers = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.followers
+
