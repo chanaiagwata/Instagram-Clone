@@ -15,6 +15,7 @@ import django_heroku
 import dj_database_url
 from decouple import config,Csv
 
+MODE=config("MODE", default= "dev")
 
 # Email configurations remember to install python-decouple
 EMAIL_USE_TLS=config('EMAIL_USE_TLS')
@@ -164,4 +165,4 @@ django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
