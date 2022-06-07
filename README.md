@@ -2,13 +2,13 @@
 ## By Chanai Agwata
 ### (MS School Project)
 
-* [Overall Description](https://github.com/chanaiagwata/Instagram-Clone/new/master?readme=1#overall-project-description)
+* [Overall Description](https://github.com/chanaiagwata/Instagram-Clone#overall-project-description)
 
-* [Setup Instructions](https://github.com/chanaiagwata/Instagram-Clone/new/master?readme=1#setup-instructions)
+* [Setup Instructions](https://github.com/chanaiagwata/Instagram-Clone#setup-instructions)
 
-* [License](https://github.com/chanaiagwata/Instagram-Clone/new/master?readme=1#license)
+* [License](https://github.com/chanaiagwata/Instagram-Clone#license)
 
-* [Author's Info](https://github.com/chanaiagwata/Instagram-Clone/new/master?readme=1#authors-info)
+* [Author's Info](https://github.com/chanaiagwata/Instagram-Clone#authors-info)
 
 ## Overall Project Description
 <p>This is an instagram clone app that allows user to create account, make posts, comment on posts, follow, and search profiles</p>
