@@ -23,7 +23,7 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'',include('instagramapp.urls')),
-    path(r'accounts/', include('registration.backends.simple.urls')),
+    path(r'accounts/', include('django_registration.backends.one_step.urls')),
     path('logout/', views.LogoutView.as_view(), {"next_page": '/'}), 
     
     
