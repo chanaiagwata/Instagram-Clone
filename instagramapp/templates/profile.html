@@ -4,7 +4,7 @@
 {{block.super}}
 
 <div class="container-fluid">
-    <div class="row text-center" style="margin-left:20px; margin-top:5%;">
+    <div class="row jumbotron text-center">
         <div class="col-md-4 col-sm-2">
             {% if user.profile.profile_pic.url %}
 
@@ -36,6 +36,26 @@
             <p>{{followingcount}}</p>
         </div>
 
+    </div>
+</div>
+<div class="nav navbar-nav" role="navigation">
+    <div class="container-fluid">
+         <div class="nav navbar-nav navbar-right">
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'indexpage' %}">
+                        <i class="fas fa-th"></i> Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'mainpage' %}">
+                        Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{%url 'updateprofile' %}">
+                     Edit Profile</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 {% endblock %}

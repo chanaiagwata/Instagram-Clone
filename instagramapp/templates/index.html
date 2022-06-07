@@ -3,8 +3,21 @@
 {% block content %}
 {{block.super}}
 <div class='container'>
-    <h1>welcome</h1>
-
+    <div class="row">
+        <div class="col-md-4">
+            <form action="{%url 'profile' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form details_form layout='inline'%}
+                <input type="submit" class="btn-lg btn-outline-info" value="New Post">
+            </form>
+        </div>
+    </div>
+    {% for post in posts %}
+        {% if user.profile.id == post.profile.id %}
+        <div id="child">
+            <img src="{{post.pic.url}}" alt="" id="post" class="img-fluid">
+        </div>
+        {% endif %}
+    {% endfor %}
 </div>
-
-{% endblock %}
+{%endblock%}
