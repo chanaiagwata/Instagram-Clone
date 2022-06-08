@@ -91,11 +91,11 @@ WSGI_APPLICATION = 'instagramcore.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-MODE=config("MODE", default="dev")
+MODE="dev"
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 # development
-if config('MODE')=="dev":
+if MODE=="dev":
    DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.postgresql_psycopg2',

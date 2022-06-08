@@ -17,14 +17,23 @@ Including another URLconf
 from django.contrib import admin
 # from django.conf.urls import include
 from django.urls import include, path
-from django.contrib.auth import views
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth import views as auth_views
+# from django.contrib.auth.views import LogoutView
+from django.conf.urls import include
+
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'',include('instagramapp.urls')),
+    
+    # path('accounts/register/',
+    #     RegistrationView.as_view(success_url='/profile/'),
+    #     name='django_registration_register'),
+    path('logout/',auth_views.logout_then_login, name ='logout'),
     path(r'accounts/', include('django_registration.backends.one_step.urls')),
-    path('logout/', views.LogoutView.as_view(), {"next_page": '/'}), 
+    path('accounts/', include('django.contrib.auth.urls')),
+    
+    # path('logout/', views.LogoutView.as_view(), {"next_page": '/'}), 
     
     
 
